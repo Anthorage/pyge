@@ -18,3 +18,4 @@ Features:
 - Groups
 - Entities
 - Basic collision detection
+- Pathfinding

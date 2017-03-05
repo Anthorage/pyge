@@ -140,7 +140,7 @@ class TiledTilemap(Tilemap):
         clayer.set_tile(x, y, id)
 
         if type(id) is int and id >= 0:
-            if self._collisions[y][x] == -1 or collisionable == True:
+            if self._collisions[y][x] == -1 or coll == True:
                 self._collisions[y][x] = collval
         else:
             self._collisions[y][x] = -1

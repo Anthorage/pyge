@@ -26,14 +26,14 @@ class Pathfind():
     _MAX_TICKS = 1000
 
 
-    def __init__(self, matrix, borders, collidable_diagonals=True, max_ticks=_MAX_TICKS):
+    def __init__(self, matrix, borders, safe_diagonals=True, max_ticks=_MAX_TICKS):
         self._matrix = matrix
         self._borders = borders
 
         self._bw = borders.width
         self._bh = borders.height
 
-        self._allow_diagonals = collidable_diagonals
+        self._safe_diagonals = safe_diagonals
 
         self._max_ticks = max_ticks if max_ticks != None else _MAX_TICKS*10
     
@@ -76,7 +76,7 @@ class Pathfind():
                         cost = self._matrix[ny][nx]
 
                         if cost > pfc and (dx != 0 or dy != 0):
-                            non_diag = (dx==0 or dy==0)
+                            non_diag = self._safe_diagonals or dx==0 or dy==0
                             if non_diag or (self._matrix[ny][cx] > pfc and self._matrix[cy][nx] > pfc):
                                 tup = (nx,ny)
                                 state = closed_dict.get(tup, (None,Pathfind._UNDEF))

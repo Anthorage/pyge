@@ -89,11 +89,17 @@ class Tilemap(sf.Drawable):
 
         self._name = name
 
-        self._groups = []
+        self._groups = set()
         self._layers = {}
 
         if not type(options) is dict:
             raise TypeError("Options parameter must be a dictionary")
+
+    def add_group(self, grp):
+        self._groups.add(grp)
+
+    def remove_group(self, grp):
+        self._groups.discard(grp)
 
     @property
     def name(self):
